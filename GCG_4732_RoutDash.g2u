@@ -1,0 +1,260 @@
+Program.Sub.ScreenSU.Start
+Gui.fAddBagDet..Create
+Gui.fAddBagDet..Caption("Additional Bag Details")
+Gui.fAddBagDet..Size(8370,10665)
+Gui.fAddBagDet..MinX(0)
+Gui.fAddBagDet..MinY(0)
+Gui.fAddBagDet..Position(0,0)
+Gui.fAddBagDet..BackColor(-2147483633)
+Gui.fAddBagDet..MousePointer(0)
+Gui.fAddBagDet..Event(UnLoad,Unload_all)
+Gui.fAddBagDet.GsGcAddBagDet.Create(GsGridControl)
+Gui.fAddBagDet.GsGcAddBagDet.Size(8070,9570)
+Gui.fAddBagDet.GsGcAddBagDet.Position(90,90)
+Gui.fAddBagDet.GsGcAddBagDet.Event(CellValueChanged,GsGcAddBagDet_CellValueChanged)
+Gui.fAddBagDet.cmdSavChng1.Create(Button)
+Gui.fAddBagDet.cmdSavChng1.Size(1635,375)
+Gui.fAddBagDet.cmdSavChng1.Position(90,9750)
+Gui.fAddBagDet.cmdSavChng1.Caption("Save Changes")
+Gui.fAddBagDet.cmdSavChng1.Event(Click,cmdSavChng1_Click)
+Gui.fAddBagDet.cmdXP2XL1.Create(Button)
+Gui.fAddBagDet.cmdXP2XL1.Size(1635,375)
+Gui.fAddBagDet.cmdXP2XL1.Position(1890,9750)
+Gui.fAddBagDet.cmdXP2XL1.Caption("Export 2 Excel")
+Gui.fAddBagDet.cmdXP2XL1.Event(Click,cmdXP2XL_Click)
+Gui.fXlExport..Create
+Gui.fXlExport..Caption("Export to Excel")
+Gui.fXlExport..Size(6510,2460)
+Gui.fXlExport..MinX(0)
+Gui.fXlExport..MinY(0)
+Gui.fXlExport..Position(0,0)
+Gui.fXlExport..BackColor(-2147483633)
+Gui.fXlExport..MousePointer(0)
+Gui.fXlExport.lbl1.Create(Label,"Select Export Folder",True,1935,255,0,120,195,True,0,"Arial",8,-2147483633,0)
+Gui.fXlExport.lbl1.DefaultValue("")
+Gui.fXlExport.txtXPFold.Create(TextBox,"",True,5565,300,0,120,435,True,0,"Arial",8,-2147483643,1)
+Gui.fXlExport.cmdSelectFold.Create(Button)
+Gui.fXlExport.cmdSelectFold.Size(420,375)
+Gui.fXlExport.cmdSelectFold.Position(5820,390)
+Gui.fXlExport.cmdSelectFold.Caption("^")
+Gui.fXlExport.cmdSelectFold.Event(Click,cmdSelectFold_Click)
+Gui.fXlExport.txtXPName.Create(TextBox,"",True,2265,300,0,120,1110,True,0,"Arial",8,-2147483643,1)
+Gui.fXlExport.lbl2.Create(Label,"File Name",True,1935,255,0,120,870,True,0,"Arial",8,-2147483633,0)
+Gui.fXlExport.cmdExportAct.Create(Button)
+Gui.fXlExport.cmdExportAct.Size(1620,375)
+Gui.fXlExport.cmdExportAct.Position(120,1530)
+Gui.fXlExport.cmdExportAct.Caption("Export")
+Gui.fXlExport.cmdExportAct.Event(Click,cmdExportAct_Click)
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+v.Global.sIcon.Declare(String)
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+f.ODBC.Connection!conx.openconnection(v.Ambient.PDSN,v.Ambient.PUser,v.Ambient.pPass)
+f.Intrinsic.Control.Try
+'SWITCH CHECK
+f.Intrinsic.Control.If(v.Caller.Switches,=,"B")
+	f.Intrinsic.Control.CallSub(fAddlBagDet)
+F.Intrinsic.Control.Else
+	f.Intrinsic.Control.CallSub(Unload_all)
+f.Intrinsic.Control.EndIf
+
+f.Intrinsic.Control.catch
+f.Intrinsic.Control.CallSub(catching,"sub",v.Ambient.CurrentSubroutine,"errorno",v.Ambient.ErrorNumber,"errordesc",v.Ambient.ErrorDescription)
+f.Intrinsic.Control.EndTry
+Program.Sub.Main.End
+
+Program.Sub.fAddlBagDet.Start
+f.Intrinsic.Control.Try
+F.Intrinsic.String.Build("{0}\GAB\GAS\gss2.ico",V.Caller.PluginsDir,v.global.sIcon)
+gui.fAddBagDet..Icon(v.Global.sIcon)
+gui.fXlExport..Icon(v.Global.sIcon)
+
+f.Data.DataTable.CreateFromSQL("AddBagDT","conx","SELECT ROUTER, BAGS_PER_ROUTER,BAGS_PER_CASE,CREATED_BY,MODIFIED_BY FROM GCG_4732_ADDLRTRINFO",true)
+F.Data.DataTable.AddColumn("AddBagDT","Edit","string")
+f.Data.DataTable.SetValue("AddBagDT",-1,"edit","N")
+f.Data.Dataview.Create("AddBagDT","AddBagVw",22)
+gui.fAddBagDet.GsGcAddBagDet.AddGridviewFromDataview("AddBagGrid","AddBagDT","AddBagVw")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","edit","visible","false")
+
+
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","ROUTER","headerforecolor", v.Color.PRI-GSS-00)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","ROUTER","headerfontbold", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","ROUTER","caption","Router")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","ROUTER","readonly", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","ROUTER","allowedit", false)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","ROUTER","MinWidth", 65)
+
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","BAGS_PER_ROUTER","headerforecolor", v.Color.PRI-GSS-00)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","BAGS_PER_ROUTER","headerfontbold", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","BAGS_PER_ROUTER","caption","Bags Per Router")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","BAGS_PER_ROUTER","readonly", false)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","BAGS_PER_ROUTER","allowedit", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","BAGS_PER_ROUTER","EditMaskType", "Numeric")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","BAGS_PER_ROUTER","EditMask", "########0")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","BAGS_PER_ROUTER","EditMaskAsDisplayFormat", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","BAGS_PER_ROUTER","MinWidth", 65)
+
+
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","BAGS_PER_CASE","headerforecolor", v.Color.PRI-GSS-00)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","BAGS_PER_CASE","headerfontbold", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","BAGS_PER_CASE","caption","Bags Per Case")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","BAGS_PER_CASE","readonly", false)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","BAGS_PER_CASE","allowedit", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","BAGS_PER_CASE","EditMaskType", "Numeric")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","BAGS_PER_CASE","EditMask", "########0")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","BAGS_PER_CASE","EditMaskAsDisplayFormat", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","BAGS_PER_CASE","MinWidth", 65)
+
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","CREATED_BY","headerforecolor", v.Color.PRI-GSS-00)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","CREATED_BY","headerfontbold", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","CREATED_BY","caption","Added By")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","CREATED_BY","readonly", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","CREATED_BY","allowedit", false)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","CREATED_BY","MinWidth", 65)
+
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","MODIFIED_BY","headerforecolor", v.Color.PRI-GSS-00)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","MODIFIED_BY","headerfontbold", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","MODIFIED_BY","caption","Modified By")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","MODIFIED_BY","readonly", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","MODIFIED_BY","allowedit", false)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","MODIFIED_BY","MinWidth", 65)
+
+'cond formatting to high light edited rows
+gui.fAddBagDet.GsGcAddBagDet.AddStyleFormatCondition("AddBagGrid","edit","ffcntag","equal","Y")
+gui.fAddBagDet.GsGcAddBagDet.SetStyleFormatConditionProperty("AddBagGrid","edit","ffcntag","backcolor","LightSteelBlue")
+gui.fAddBagDet.GsGcAddBagDet.SetStyleFormatConditionProperty("AddBagGrid","edit","ffcntag","ApplyToRow","true")
+
+
+gui.fAddBagDet.GsGcAddBagDet.SetGridviewProperty("AddBagGrid","Enableappearanceoddrow",True)
+gui.fAddBagDet.GsGcAddBagDet.SetGridviewProperty("AddBagGrid","OptionsFindAlwaysVisible",True)
+gui.fAddBagDet.GsGcAddBagDet.SetGridviewProperty("AddBagGrid","OptionsViewShowAutoFilterRow",True)
+
+gui.fAddBagDet.GsGcAddBagDet.MainView("AddBagGrid")
+gui.fAddBagDet..Enabled(true)
+
+
+gui.fAddBagDet..Show
+gui.fAddBagDet..SetFocus
+f.Intrinsic.Control.catch
+f.Intrinsic.Control.CallSub(catching,"sub",v.Ambient.CurrentSubroutine,"errorno",v.Ambient.ErrorNumber,"errordesc",v.Ambient.ErrorDescription)
+f.Intrinsic.Control.EndTry
+Program.Sub.fAddlBagDet.End
+
+Program.Sub.GsGcAddBagDet_CellValueChanged.Start
+f.Data.DataTable.SetValue("AddBagDT",v.Args.rowhandle,"Edit","Y")
+gui.fAddBagDet.GsGcAddBagDet.SetCellValueByColumnName("AddBagGrid","edit",v.Args.rowindex,"Y")
+Program.Sub.GsGcAddBagDet_CellValueChanged.End
+
+Program.Sub.cmdSavChng1_Click.Start
+v.Local.icount.Declare(long)
+v.Local.sSQL.Declare(string)
+v.Local.sBagsPerCase.Declare(string)
+v.Local.sBagsPerRout.Declare(string)
+v.Local.sRout.Declare(string)
+f.Intrinsic.Control.Try
+gui.fAddBagDet..Enabled(false)
+
+'create view of rows with edit flag as Y
+f.data.Dataview.Create("AddBagDT","savinvw",22,"edit = 'Y'","")
+f.Intrinsic.Control.if(v.DataView.AddBagDT!savinvw.RowCount,=,0)
+	Function.Intrinsic.UI.CloseWaitDialog
+	f.Intrinsic.UI.Msgbox("No changes have been made as nothing has been edited on the grid.")
+	gui.fAddBagDet..SetFocus
+	f.Intrinsic.Control.ExitSub
+f.Intrinsic.Control.EndIf
+
+f.Intrinsic.Control.For(v.Local.icount,0,v.dataview.AddBagDT!savinvw.RowCount--,1)
+	v.Local.sBagsPerRout.Set(v.dataview.AddBagDT!savinvw(v.Local.icount).BAGS_PER_ROUTER!fieldval)
+	v.Local.sBagsPerCase.Set(v.dataview.AddBagDT!savinvw(v.Local.icount).BAGS_PER_CASE!fieldval)
+	v.Local.sRout.set(v.dataview.AddBagDT!savinvw(v.Local.icount).ROUTER!fieldval)
+	f.Intrinsic.string.Build("UPDATE GCG_4732_ADDLRTRINFO SET BAGS_PER_ROUTER = '{0}',BAGS_PER_CASE = '{1}',MODIFIED_BY = '{2}' WHERE ROUTER = '{3}'",v.Local.sBagsPerRout,v.Local.sBagsPerCase,V.caller.User,v.Local.sRout,V.Local.sSql)
+	F.ODBC.Connection!conx.EXECUTE(V.Local.sSQL)
+	f.Data.dataview.SetValue("AddBagDT","savinvw",v.Local.icount,"MODIFIED_BY",v.Caller.User)
+F.Intrinsic.Control.Next(v.Local.icount)
+f.Data.dataview.Close("AddBagDT","savinvw")
+f.Data.DataTable.SetValue("AddBagDT",-1,"edit","N")
+f.Intrinsic.UI.Msgbox("Changes have been made.")
+gui.fAddBagDet..Enabled(true)
+gui.fAddBagDet..SetFocus
+f.Intrinsic.Control.catch
+f.Intrinsic.Control.CallSub(catching,"sub",v.Ambient.CurrentSubroutine,"errorno",v.Ambient.ErrorNumber,"errordesc",v.Ambient.ErrorDescription)
+f.Intrinsic.Control.EndTry
+Program.Sub.cmdSavChng1_Click.End
+
+Program.Sub.Unload_all.Start
+f.ODBC.Connection!conx.Close
+f.Intrinsic.Control.End
+Program.Sub.Unload_all.End
+
+Program.Sub.cmdXP2XL_Click.Start
+gui.fXlExport..Show
+Program.Sub.cmdXP2XL_Click.End
+
+Program.Sub.fXlExport_UnLoad.Start
+gui.fXlExport..Visible(false)
+gui.fXlExport..ClearScreen
+f.Intrinsic.Control.If(v.Caller.Switches,=,"B")
+	gui.fAddBagDet..Enabled(true)
+	gui.fAddBagDet..SetFocus
+F.Intrinsic.Control.Else
+	f.Intrinsic.Control.ExitSub
+f.Intrinsic.Control.EndIf
+
+Program.Sub.fXlExport_UnLoad.End
+
+Program.Sub.cmdExportAct_Click.Start
+v.Local.sOutFile.Declare(String)
+v.Local.sMsg.Declare(String)
+v.Local.bCheck.Declare(boolean)
+v.Local.sOutFile.Set(v.Screen.fXlExport!txtXPName.text)
+f.Intrinsic.Control.Try
+
+f.Intrinsic.control.if(v.Local.sOutFile.Trim,=,"")
+	f.Intrinsic.String.Build("File name field is empty. Please Enter a file name",v.Local.sOutFile,v.Local.sMsg)
+	f.Intrinsic.UI.Msgbox(v.Local.sMsg)
+	f.Intrinsic.Control.ExitSub
+f.Intrinsic.Control.EndIf
+f.intrinsic.String.Build("{0}\{1}.xlsx",v.Screen.fXlExport!txtXPFold.text,v.Screen.fXlExport!txtXPName.text,v.Local.sOutFile)
+f.Intrinsic.File.Exists(v.Local.sOutFile, v.Local.bCheck)
+f.intrinsic.Control.If(v.Local.bCheck,=,true)
+	f.Intrinsic.String.Build("The file '{0}' already exists. Please change file name or type in another file name",v.Local.sOutFile,v.Local.sMsg)
+	f.Intrinsic.UI.Msgbox(v.Local.sMsg)
+	f.Intrinsic.Control.ExitSub
+f.Intrinsic.Control.EndIf
+
+f.Intrinsic.Control.If(v.Caller.Switches,=,"B")
+gui.fXlExport.txtXPName.Text("Addl_Bag_Details")
+	gui.fAddBagDet.GsGcAddBagDet.Export(v.Local.sOutFile,"xlsx")
+	f.Intrinsic.String.Build("The report has beeen successfully exported to file {0}",v.Local.sOutFile,v.Local.sMsg)
+	f.Intrinsic.UI.Msgbox(v.Local.sMsg)
+F.Intrinsic.Control.Else
+	f.Intrinsic.Control.ExitSub
+f.Intrinsic.Control.EndIf
+f.Intrinsic.Control.CallSub(fXlExport_UnLoad)
+f.Intrinsic.Control.catch
+f.Intrinsic.Control.CallSub(catching,"sub",v.Ambient.CurrentSubroutine,"errorno",v.Ambient.ErrorNumber,"errordesc",v.Ambient.ErrorDescription)
+f.Intrinsic.Control.EndTry
+
+Program.Sub.cmdExportAct_Click.End
+
+Program.Sub.cmdSelectFold_Click.Start
+v.local.sFolder.Declare(string)
+f.Intrinsic.Control.Try
+'if no folder is selected the path will default to global directory
+f.Intrinsic.UI.FolderBrowser("Select a Destination Folder",v.Local.sFolder)
+f.Intrinsic.Control.If(v.Local.sFolder,<>,"***CANCEL***")
+	gui.fXlExport.txtXPFold.text(v.Local.sFolder)	
+f.Intrinsic.control.Else
+	gui.fXlExport.txtXPFold.text(v.Caller.GlobalDir)
+f.Intrinsic.Control.EndIf
+Program.Sub.cmdSelectFold_Click.End
+
+Program.Sub.catching.Start
+v.Local.sError.declare(string)
+Function.Intrinsic.String.Concat(v.Ambient.Now,": Project: GCG_4732_RoutDash.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",v.Args.sub,V.Ambient.NewLine,"Error Occurred ",V.Args.errorno," with description ",V.args.errordesc,V.Local.sError)
+f.Intrinsic.UI.Msgbox(v.Local.sError)
+f.Intrinsic.Control.CallSub(Unload_all)
+Program.Sub.catching.End
