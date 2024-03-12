@@ -1,0 +1,140 @@
+Program.Sub.ScreenSU.Start
+Gui.fAddlRoutInfo1..Create
+Gui.fAddlRoutInfo1..Caption("Additional Rout info")
+Gui.fAddlRoutInfo1..Size(5220,1800)
+Gui.fAddlRoutInfo1..MinX(0)
+Gui.fAddlRoutInfo1..MinY(0)
+Gui.fAddlRoutInfo1..Position(0,0)
+Gui.fAddlRoutInfo1..BackColor(-2147483633)
+Gui.fAddlRoutInfo1..MousePointer(0)
+Gui.fAddlRoutInfo1..Event(UnLoad,fAddlRoutInfo_UnLoad)
+Gui.fAddlRoutInfo1.cmdAddRoutInfo1.Create(Button)
+Gui.fAddlRoutInfo1.cmdAddRoutInfo1.Size(1485,375)
+Gui.fAddlRoutInfo1.cmdAddRoutInfo1.Position(90,915)
+Gui.fAddlRoutInfo1.cmdAddRoutInfo1.Caption("Save")
+Gui.fAddlRoutInfo1.cmdAddRoutInfo1.Event(Click,cmdAddRoutInfo1_Click)
+Gui.fAddlRoutInfo1.lblBgsPerSt.Create(Label,"Bags per Case",True,2145,255,0,120,585,True,0,"Arial",8,-2147483633,0)
+Gui.fAddlRoutInfo1.txtBgsPerSt.Create(TextBox,"",True,1560,300,0,3150,525,True,0,"Arial",8,-2147483643,1)
+Gui.fAddlRoutInfo1.txtBgsPerSt.NumericOnly(2)
+Gui.fAddlRoutInfo1.lblBgsPerRout.Create(Label,"Bags per Router",True,2145,255,0,120,165,True,0,"Arial",8,-2147483633,0)
+Gui.fAddlRoutInfo1.txtBgsPerRout.Create(TextBox,"",True,1560,300,0,3150,105,True,0,"Arial",8,-2147483643,1)
+Gui.fAddlRoutInfo1.txtBgsPerRout.NumericOnly(2)
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+v.Global.sRout.Declare(String)
+v.Global.sRev.Declare(String)
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+f.Intrinsic.Control.Try
+F.ODBC.connection!conx.openConnection(v.Ambient.PDSN,v.Ambient.PUser,v.Ambient.PPass)
+
+f.Intrinsic.Control.If(v.Caller.Switches,=,"D")
+	f.Intrinsic.control.callsub(fAddlRoutInfo_UnLoad)
+'hook check	
+f.Intrinsic.Control.Else
+	f.Intrinsic.Control.if(v.Caller.Hook,=,11010)
+		v.Passed.000201.Set("Addl Info")
+		f.Intrinsic.control.callsub(fAddlRoutInfo_UnLoad)
+	f.Intrinsic.Control.Elseif(v.Caller.Hook,=,11120)
+		f.Intrinsic.Control.CallSub(AddRoutInfo)
+	f.Intrinsic.Control.Elseif(v.Caller.Hook,=,11092,"AND",v.Caller.Switches,=,"N")
+		f.Intrinsic.Control.CallSub(AddRoutInfo)	
+	f.Intrinsic.Control.Else
+		f.Intrinsic.control.callsub(fAddlRoutInfo_UnLoad)
+	f.Intrinsic.Control.EndIf
+f.Intrinsic.Control.EndIf
+f.Intrinsic.Control.catch
+f.Intrinsic.Control.CallSub(catching,"sub",v.Ambient.CurrentSubroutine,"errorno",v.Ambient.ErrorNumber,"errordesc",v.Ambient.ErrorDescription)
+f.Intrinsic.Control.EndTry
+Program.Sub.Main.End
+
+Program.Sub.fAddlRoutInfo_UnLoad.Start
+f.odbc.Connection!conx.Close
+f.Intrinsic.Control.End
+Program.Sub.fAddlRoutInfo_UnLoad.End
+
+Program.Sub.AddRoutInfo.Start
+v.Local.sSQL.Declare(String)
+v.Local.sFrmCaption.Declare(String)
+v.Local.sPLCheck.Declare(String)
+v.Local.sBgsPerSet.Declare(String)
+v.Local.sBgsPerRout.Declare(String)
+
+v.Local.iCheck.Declare(float)
+
+f.Intrinsic.Control.try
+v.Global.sRout.Set(v.Passed.000014.trim)
+f.Intrinsic.String.RPad(v.Global.sRout," ",17,v.Global.sRout)
+f.Intrinsic.string.Left(v.Global.sRout,17,v.Global.sRout)
+v.Global.sRev.Set(v.Passed.000015.trim)
+f.Intrinsic.String.RPad(v.Global.sRev," ",3,v.Global.sRev)
+f.Intrinsic.string.Left(v.Global.sRev,3,v.Global.sRev)
+f.Intrinsic.string.Build("SELECT RTRIM(PROD_LINE) as PROD_LINE FROM V_ROUTER_HEADER WHERE ROUTER = '{0}{1}'",v.Global.sRout,v.Global.sRev,v.Local.sSQL)
+f.odbc.Connection!conx.executeandreturn(v.local.sSql,v.Local.sPLCheck)
+
+
+f.Intrinsic.Control.If(v.Passed.000014.trim,=,"")
+	f.Intrinsic.control.callsub(fAddlRoutInfo_UnLoad)
+F.Intrinsic.Control.else
+	
+'	f.Intrinsic.Control.If(v.Local.sPLCheck.Trim,=,"PL","OR",v.Local.sPLCheck.Trim,=,"7L")
+	f.Intrinsic.Control.If(v.Local.sPLCheck.Trim,=,"PB","OR",v.Local.sPLCheck.Trim,=,"7B",v.Local.sPLCheck.Trim,=,"KT",v.Local.sPLCheck.Trim,=,"TL")
+	'	f.Intrinsic.Control.ElseIf(v.Local.sPLCheck.Trim,=,"PB")
+		f.Intrinsic.string.Build("SELECT COUNT(ROUTER) FROM V_ROUTER_HEADER WHERE ROUTER = '{0}{1}'",v.Global.sRout,v.Global.sRev,v.Local.sSQL)
+		f.odbc.Connection!conx.executeandreturn(v.local.sSql,v.Local.iCheck)
+		F.Intrinsic.control.If(v.Local.iCheck,=,0)
+			f.intrinsic.UI.Msgbox("Router does not exist or is not saved yet.  If this is a new router, save it before updating additional information.")
+			f.Intrinsic.control.callsub(fAddlRoutInfo_UnLoad)
+		f.Intrinsic.Control.EndIf
+		f.Intrinsic.string.Build("select BAGS_PER_CASE from GCG_4732_ADDLRTRINFO where router = '{0}{1}'",v.Global.sRout,v.Global.sRev,v.Local.sSQL)
+		f.odbc.Connection!conx.executeandreturn(v.local.sSql,v.Local.sBgsPerSet)
+		gui.fAddlRoutInfo1.txtBgsPerSt.NumericOnly(1)
+		gui.fAddlRoutInfo1.txtBgsPerSt.Text(v.Local.sBgsPerSet)
+		f.Intrinsic.string.Build("select BAGS_PER_ROUTER from GCG_4732_ADDLRTRINFO where router = '{0}{1}'",v.Global.sRout,v.Global.sRev,v.Local.sSQL)
+		f.odbc.Connection!conx.executeandreturn(v.local.sSql,v.Local.sBgsPerRout)
+		
+		gui.fAddlRoutInfo1.txtBgsPerRout.NumericOnly(1)
+		gui.fAddlRoutInfo1.txtBgsPerRout.Text(v.Local.sBgsPerRout)
+		f.Intrinsic.String.Build("Addl info for Router {0}{1}",v.Passed.000014,v.Passed.000015,v.Local.sFrmCaption)
+		gui.fAddlRoutInfo1..Caption(v.Local.sFrmCaption)
+		gui.fAddlRoutInfo1..Show
+	f.Intrinsic.Control.Else
+		f.intrinsic.UI.Msgbox("No Addl Info required for product line associated with this router")
+		f.Intrinsic.control.callsub(fAddlRoutInfo_UnLoad)
+	f.Intrinsic.Control.EndIf
+f.Intrinsic.Control.EndIf
+f.Intrinsic.Control.catch
+f.Intrinsic.Control.CallSub(catching,"sub",v.Ambient.CurrentSubroutine,"errorno",v.Ambient.ErrorNumber,"errordesc",v.Ambient.ErrorDescription)
+f.Intrinsic.Control.EndTry
+Program.Sub.AddRoutInfo.End
+
+Program.Sub.cmdAddRoutInfo1_Click.Start
+v.Local.sSql.Declare(string)
+v.Local.iCheck.Declare(float)
+f.Intrinsic.Control.Try
+gui.fAddlRoutInfo1..Enabled(false)
+f.Intrinsic.string.Build("select COUNT(ROUTER) from GCG_4732_ADDLRTRINFO where router = '{0}{1}'",v.Global.sRout,v.Global.sRev,v.Local.sSQL)
+f.odbc.Connection!conx.executeandreturn(v.local.sSql,v.Local.iCheck)
+
+
+F.Intrinsic.control.If(v.Local.iCheck,=,0)
+	f.Intrinsic.String.build("INSERT INTO GCG_4732_ADDLRTRINFO  (ROUTER,BAGS_PER_ROUTER,BAGS_PER_CASE,CREATED_BY) VALUES  ('{0}{1}','{2}','{3}','{4}')",V.Global.sRout,V.Global.sRev,v.Screen.fAddlRoutInfo1!txtBgsPerRout.text,v.Screen.fAddlRoutInfo1!txtBgsPerSt.text,V.caller.User,V.Local.sSql)
+	f.odbc.Connection!conx.execute(v.Local.sSql)
+f.Intrinsic.Control.else
+	f.Intrinsic.string.Build("UPDATE GCG_4732_ADDLRTRINFO SET BAGS_PER_ROUTER = '{0}',BAGS_PER_CASE = '{1}',MODIFIED_BY = '{2}' WHERE ROUTER = '{3}{4}'",v.Screen.fAddlRoutInfo1!txtBgsPerRout.TEXT,v.Screen.fAddlRoutInfo1!txtBgsPerSt.text,V.caller.User,V.Global.sRout,V.Global.sRev,V.Local.sSql)
+	f.odbc.Connection!conx.execute(v.Local.sSql)
+F.Intrinsic.Control.EndIf
+gui.fAddlRoutInfo1..Enabled(true)
+f.Intrinsic.Control.catch
+f.Intrinsic.Control.CallSub(catching,"sub",v.Ambient.CurrentSubroutine,"errorno",v.Ambient.ErrorNumber,"errordesc",v.Ambient.ErrorDescription)
+f.Intrinsic.Control.EndTry
+Program.Sub.cmdAddRoutInfo1_Click.End
+
+Program.Sub.catching.Start
+v.Local.sError.declare(string)
+Function.Intrinsic.String.Concat(v.Ambient.Now,": Project: GCG_4732_AddlRoutInfo.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",v.Args.sub,V.Ambient.NewLine,"Error Occurred ",V.Args.errorno," with description ",V.args.errordesc,V.Local.sError)
+f.Intrinsic.UI.Msgbox(v.Local.sError)
+f.Intrinsic.control.callsub(fAddlRoutInfo_UnLoad)
+Program.Sub.catching.End
