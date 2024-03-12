@@ -1,0 +1,523 @@
+Program.Sub.ScreenSU.Start
+Gui.fAddBagDet..Create
+Gui.fAddBagDet..Caption("Additional Bag Details")
+Gui.fAddBagDet..Size(27480,13275)
+Gui.fAddBagDet..MinX(0)
+Gui.fAddBagDet..MinY(0)
+Gui.fAddBagDet..Position(0,0)
+Gui.fAddBagDet..BackColor(-2147483633)
+Gui.fAddBagDet..MousePointer(0)
+Gui.fAddBagDet..Event(UnLoad,Unload_all)
+Gui.fAddBagDet.GsGcAddBagDet.Create(GsGridControl)
+Gui.fAddBagDet.GsGcAddBagDet.Size(27180,11130)
+Gui.fAddBagDet.GsGcAddBagDet.Position(90,90)
+Gui.fAddBagDet.GsGcAddBagDet.Event(CellValueChanged,GsGcAddBagDet_CellValueChanged)
+Gui.fAddBagDet.GsGcAddBagDet.Event(RowCellClick,GsGcAddBagDet_RowCellClick)
+Gui.fAddBagDet.cmdSavChng1.Create(Button)
+Gui.fAddBagDet.cmdSavChng1.Size(1590,375)
+Gui.fAddBagDet.cmdSavChng1.Position(105,12300)
+Gui.fAddBagDet.cmdSavChng1.Caption("Save Changes")
+Gui.fAddBagDet.cmdSavChng1.Event(Click,cmdSavChng1_Click)
+Gui.fAddBagDet.cmdXP2XL1.Create(Button)
+Gui.fAddBagDet.cmdXP2XL1.Size(1590,375)
+Gui.fAddBagDet.cmdXP2XL1.Position(2070,12315)
+Gui.fAddBagDet.cmdXP2XL1.Caption("Export 2 Excel")
+Gui.fAddBagDet.cmdXP2XL1.Event(Click,cmdXP2XL_Click)
+Gui.fAddBagDet.lbljob.Create(Label,"Click on a Job to populate the aggregates",True,4500,255,0,105,11445,True,0,"Arial",8,-2147483633,0)
+Gui.fAddBagDet.lbljob.FontStyle(True,False,False,False,False)
+Gui.fAddBagDet.lbljob.ForeColor(-2147483621)
+Gui.fAddBagDet.lbl2.Create(Label,"Total Bags",True,1920,255,0,120,11880,True,0,"Arial",8,-2147483633,0)
+Gui.fAddBagDet.lbl2.FontStyle(True,False,False,False,False)
+Gui.fAddBagDet.txtTotBags.Create(TextBox,"",True,1560,300,0,2085,11790,True,0,"Arial",8,-2147483643,1)
+Gui.fAddBagDet.txtTotBags.Locked(True)
+Gui.fAddBagDet.txtTotBoxScr.Create(TextBox,"",True,1560,300,0,15285,11790,True,0,"Arial",8,-2147483643,1)
+Gui.fAddBagDet.txtTotBoxScr.Locked(True)
+Gui.fAddBagDet.lbl3.Create(Label,"Total Boxes Scrapped",True,1890,255,0,13185,11880,True,0,"Arial",8,-2147483633,0)
+Gui.fAddBagDet.lbl3.FontStyle(True,False,False,False,False)
+Gui.fAddBagDet.txtAvgBgPerHr.Create(TextBox,"",True,1560,300,0,10755,11790,True,0,"Arial",8,-2147483643,1)
+Gui.fAddBagDet.txtAvgBgPerHr.Locked(True)
+Gui.fAddBagDet.lbl4.Create(Label,"Avg. Bags per Hour",True,1890,255,0,8805,11880,True,0,"Arial",8,-2147483633,0)
+Gui.fAddBagDet.lbl4.FontStyle(True,False,False,False,False)
+Gui.fAddBagDet.txtTotCases.Create(TextBox,"",True,1560,300,0,6435,11790,True,0,"Arial",8,-2147483643,1)
+Gui.fAddBagDet.txtTotCases.Locked(True)
+Gui.fAddBagDet.lbl5.Create(Label,"Total Cases",True,1890,255,0,4470,11880,True,0,"Arial",8,-2147483633,0)
+Gui.fAddBagDet.lbl5.FontStyle(True,False,False,False,False)
+Gui.fAddBagDet.lbl6.Create(Label,"Total Scrap (Lbs)",True,1890,255,0,21885,11880,True,0,"Arial",8,-2147483633,0)
+Gui.fAddBagDet.lbl6.FontStyle(True,False,False,False,False)
+Gui.fAddBagDet.txtTotScr.Create(TextBox,"",True,1560,300,0,23850,11790,True,0,"Arial",8,-2147483643,1)
+Gui.fAddBagDet.txtTotScr.Locked(True)
+Gui.fAddBagDet.lbl7.Create(Label,"Total Clips Scrapped",True,1890,255,0,17535,11880,True,0,"Arial",8,-2147483633,0)
+Gui.fAddBagDet.lbl7.FontStyle(True,False,False,False,False)
+Gui.fAddBagDet.txtClipScr.Create(TextBox,"",True,1560,300,0,19560,11790,True,0,"Arial",8,-2147483643,1)
+Gui.fAddBagDet.txtClipScr.Locked(True)
+Gui.fXlExport..Create
+Gui.fXlExport..Caption("Export to Excel")
+Gui.fXlExport..Size(6510,2460)
+Gui.fXlExport..MinX(0)
+Gui.fXlExport..MinY(0)
+Gui.fXlExport..Position(0,0)
+Gui.fXlExport..BackColor(-2147483633)
+Gui.fXlExport..MousePointer(0)
+Gui.fXlExport.lbl1.Create(Label,"Select Export Folder",True,1935,255,0,120,195,True,0,"Arial",8,-2147483633,0)
+Gui.fXlExport.lbl1.DefaultValue("")
+Gui.fXlExport.txtXPFold.Create(TextBox,"",True,5565,300,0,120,435,True,0,"Arial",8,-2147483643,1)
+Gui.fXlExport.cmdSelectFold.Create(Button)
+Gui.fXlExport.cmdSelectFold.Size(420,375)
+Gui.fXlExport.cmdSelectFold.Position(5820,390)
+Gui.fXlExport.cmdSelectFold.Caption("^")
+Gui.fXlExport.cmdSelectFold.Event(Click,cmdSelectFold_Click)
+Gui.fXlExport.txtXPName.Create(TextBox,"",True,2265,300,0,120,1110,True,0,"Arial",8,-2147483643,1)
+Gui.fXlExport.lbl2.Create(Label,"File Name",True,1935,255,0,120,870,True,0,"Arial",8,-2147483633,0)
+Gui.fXlExport.cmdExportAct.Create(Button)
+Gui.fXlExport.cmdExportAct.Size(1620,375)
+Gui.fXlExport.cmdExportAct.Position(120,1530)
+Gui.fXlExport.cmdExportAct.Caption("Export")
+Gui.fXlExport.cmdExportAct.Event(Click,cmdExportAct_Click)
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+v.Global.sIcon.Declare(String)
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+f.Intrinsic.Control.Try
+f.ODBC.Connection!conx.openconnection(v.Ambient.PDSN,v.Ambient.PUser,v.Ambient.pPass)
+'switch check
+
+f.Intrinsic.Control.If(v.Caller.Switches,=,"B")
+	f.Intrinsic.Control.CallSub(fAddlBagDet)
+F.Intrinsic.Control.Else
+	f.Intrinsic.Control.CallSub(Unload_all)
+f.Intrinsic.Control.EndIf
+f.Intrinsic.Control.catch
+f.Intrinsic.Control.CallSub(catching,"sub",v.Ambient.CurrentSubroutine,"errorno",v.Ambient.ErrorNumber,"errordesc",v.Ambient.ErrorDescription)
+f.Intrinsic.Control.EndTry
+'this is test
+Program.Sub.Main.End
+
+Program.Sub.fAddlBagDet.Start
+f.Intrinsic.Control.try
+v.Local.sScrapNt.Declare(String)
+F.Intrinsic.String.Build("{0}\GAB\GAS\gss2.ico",V.Caller.PluginsDir,v.global.sIcon)
+gui.fAddBagDet..Icon(v.Global.sIcon)
+gui.fXlExport..Icon(v.Global.sIcon)
+
+f.Data.DataTable.CreateFromSQL("AddBagDT","conx","SELECT job + '-' + Suffix as job_suffix,JOB,SUFFIX,SEQ,RTRIM(' ') as O_PART,ENTRY_NO,LOG_TIME,NO_OF_CASES,LOT_NO_FILM,LBS_SCRAP,SCRAP_REASON,ROLL_NO_FILM,NO_BOX_SCRAP,NO_CLIPS_SCRAP,TOTAL_BAGS,BAGS_PER_HOUR,EMPLOYEE,EMP_NAME,MODIFIED_BY,RTRIM(' ') AS ROUTER,RTRIM(' ') AS BAGS_PER_CASE FROM GCG_4732_SHPFLRDATA1 Order BY JOB,SUFFIX,SEQ,Entry_no",true)
+F.Data.DataTable.AddColumn("AddBagDT","Edit","string")
+f.Data.DataTable.SetValue("AddBagDT",-1,"edit","N")
+f.Data.dictionary.CreateFromSQL("RoutDict","conx","select job + '-' + Suffix as job_suffix, router from V_JOB_HEADER")
+f.Data.Dictionary.SetDefaultReturn("RoutDict","")
+f.Data.DataTable.FillFromDictionary("AddBagDT","RoutDict","job_suffix","Router")
+f.Data.Dictionary.Close("RoutDict")
+
+f.Data.dictionary.CreateFromSQL("PARTDICT","conx","SELECT job + '-' + Suffix as job_suffix, PART FROM V_JOB_HEADER")
+f.Data.Dictionary.SetDefaultReturn("PARTDICT",0)
+f.Data.DataTable.FillFromDictionary("AddBagDT","PARTDICT","job_suffix","O_PART")
+f.Data.Dictionary.Close("PARTDICT")
+
+f.Data.DataTable.RemoveColumn("AddBagDT","job_suffix")
+
+f.Data.dictionary.CreateFromSQL("BPSDICT","conx","SELECT ROUTER, BAGS_PER_CASE FROM GCG_4732_ADDLRTRINFO")
+f.Data.Dictionary.SetDefaultReturn("BPSDICT",0)
+f.Data.DataTable.FillFromDictionary("AddBagDT","BPSDICT","Router","BAGS_PER_CASE")
+f.Data.Dictionary.Close("BPSDICT")
+
+
+
+f.Data.DataTable.RemoveColumn("AddBagDT","Router")
+
+v.Local.sScrapNt.Set("NA*!*Blocking*!*Carbons/Unmelts*!*Crushed Core*!*Die Lines*!*Film Wander*!*Gauge Band*!*Gauge Fluctuation*!*Gusset Out*!*Jamming*!*Lay Flat Issue*!*Mechanical *!*Adjustment*!*Mechanical Malfunction*!*Print Issue*!*Roll Change*!*Roll Damage*!*Splice*!*Telescoping*!*Tension Issue*!*Wrinkles")
+
+
+
+
+
+f.Data.Dataview.Create("AddBagDT","AddBagVw",22)
+gui.fAddBagDet.GsGcAddBagDet.AddGridviewFromDataview("AddBagGrid","AddBagDT","AddBagVw")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","edit","visible","false")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","BAGS_PER_case","visible","false")
+
+
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","Job","headerforecolor", v.Color.PRI-GSS-00)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","Job","headerfontbold", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","Job","caption","Job")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","Job","readonly", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","Job","allowedit", false)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","Job","MinWidth", 60)
+
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","Suffix","headerforecolor", v.Color.PRI-GSS-00)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","Suffix","headerfontbold", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","Suffix","caption","Suffix")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","Suffix","readonly", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","Suffix","allowedit", false)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","Suffix","MinWidth", 60)
+
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","Seq","headerforecolor", v.Color.PRI-GSS-00)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","Seq","headerfontbold", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","Seq","caption","Seq")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","Seq","readonly", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","Seq","allowedit", false)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","Seq","MinWidth", 60)
+
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","O_PART","headerforecolor", v.Color.PRI-GSS-00)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","O_PART","headerfontbold", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","O_PART","caption","Final Part")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","O_PART","readonly", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","O_PART","allowedit", false)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","O_PART","MinWidth", 120)
+
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","ENTRY_NO","headerforecolor", v.Color.PRI-GSS-00)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","ENTRY_NO","headerfontbold", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","ENTRY_NO","caption","Entry No.")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","ENTRY_NO","readonly", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","ENTRY_NO","allowedit", false)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","ENTRY_NO","MinWidth", 60)
+
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","NO_OF_CASES","headerforecolor", v.Color.PRI-GSS-00)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","NO_OF_CASES","headerfontbold", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","NO_OF_CASES","caption","No. of Cases")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","NO_OF_CASES","readonly", false)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","NO_OF_CASES","allowedit", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","NO_OF_CASES","EditMaskType", "Numeric")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","NO_OF_CASES","EditMask", "########0")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","NO_OF_CASES","EditMaskAsDisplayFormat", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","NO_OF_CASES","MinWidth", 80)
+
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","LOT_NO_FILM","headerforecolor", v.Color.PRI-GSS-00)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","LOT_NO_FILM","headerfontbold", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","LOT_NO_FILM","caption","Lot No. of Film used")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","LOT_NO_FILM","readonly", false)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","LOT_NO_FILM","allowedit", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","LOT_NO_FILM","EditMaskType", "Numeric")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","LOT_NO_FILM","EditMask", "########0")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","LOT_NO_FILM","EditMaskAsDisplayFormat", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","LOT_NO_FILM","MinWidth", 120)
+
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","LBS_SCRAP","headerforecolor", v.Color.PRI-GSS-00)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","LBS_SCRAP","headerfontbold", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","LBS_SCRAP","caption","Lbs Scrap")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","LBS_SCRAP","readonly", false)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","LBS_SCRAP","allowedit", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","LBS_SCRAP","EditMaskType", "Numeric")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","LBS_SCRAP","EditMask", "########0.00")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","LBS_SCRAP","EditMaskAsDisplayFormat", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","LBS_SCRAP","MinWidth", 80)
+
+gui.fAddBagDet.GsGcAddBagDet.ColumnEdit("AddBagGrid","SCRAP_REASON","Dropdownlist",v.Local.sScrapNt)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","SCRAP_REASON","headerforecolor", v.Color.PRI-GSS-00)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","SCRAP_REASON","headerfontbold", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","SCRAP_REASON","caption","Scrap Reason")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","SCRAP_REASON","readonly", false)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","SCRAP_REASON","allowedit", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","SCRAP_REASON","MinWidth", 100)
+
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","ROLL_NO_FILM","headerforecolor", v.Color.PRI-GSS-00)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","ROLL_NO_FILM","headerfontbold", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","ROLL_NO_FILM","caption","Roll No. of Film")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","ROLL_NO_FILM","readonly", false)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","ROLL_NO_FILM","allowedit", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","ROLL_NO_FILM","EditMaskType", "Numeric")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","ROLL_NO_FILM","EditMask", "########0")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","ROLL_NO_FILM","EditMaskAsDisplayFormat", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","ROLL_NO_FILM","MinWidth", 100)
+
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","NO_BOX_SCRAP","headerforecolor", v.Color.PRI-GSS-00)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","NO_BOX_SCRAP","headerfontbold", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","NO_BOX_SCRAP","caption","No. of Boxes scrapped")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","NO_BOX_SCRAP","readonly", false)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","NO_BOX_SCRAP","allowedit", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","NO_BOX_SCRAP","EditMaskType", "Numeric")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","NO_BOX_SCRAP","EditMask", "########0")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","NO_BOX_SCRAP","EditMaskAsDisplayFormat", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","NO_BOX_SCRAP","MinWidth", 130)
+
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","NO_CLIPS_SCRAP","headerforecolor", v.Color.PRI-GSS-00)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","NO_CLIPS_SCRAP","headerfontbold", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","NO_CLIPS_SCRAP","caption","No. of Clips scrapped")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","NO_CLIPS_SCRAP","readonly", false)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","NO_CLIPS_SCRAP","allowedit", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","NO_CLIPS_SCRAP","EditMaskType", "Numeric")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","NO_CLIPS_SCRAP","EditMask", "########0")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","NO_CLIPS_SCRAP","EditMaskAsDisplayFormat", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","NO_CLIPS_SCRAP","MinWidth", 130)
+
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","TOTAL_BAGS","headerforecolor", v.Color.PRI-GSS-00)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","TOTAL_BAGS","headerfontbold", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","TOTAL_BAGS","caption","Total Bags")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","TOTAL_BAGS","readonly", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","TOTAL_BAGS","allowedit", false)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","TOTAL_BAGS","EditMaskType", "Numeric")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","TOTAL_BAGS","EditMask", "########0")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","TOTAL_BAGS","EditMaskAsDisplayFormat", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","TOTAL_BAGS","MinWidth", 80)
+
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","BAGS_PER_HOUR","headerforecolor", v.Color.PRI-GSS-00)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","BAGS_PER_HOUR","headerfontbold", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","BAGS_PER_HOUR","caption","Bags Per Hour")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","BAGS_PER_HOUR","readonly", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","BAGS_PER_HOUR","allowedit", false)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","BAGS_PER_HOUR","EditMaskType", "Numeric")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","BAGS_PER_HOUR","EditMask", "########0.00")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","BAGS_PER_HOUR","EditMaskAsDisplayFormat", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","BAGS_PER_HOUR","MinWidth", 100)
+
+
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","EMPLOYEE","headerforecolor", v.Color.PRI-GSS-00)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","EMPLOYEE","headerfontbold", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","EMPLOYEE","caption","Employee No.")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","EMPLOYEE","readonly", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","EMPLOYEE","allowedit", false)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","EMPLOYEE","MinWidth", 100)
+
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","EMP_NAME","headerforecolor", v.Color.PRI-GSS-00)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","EMP_NAME","headerfontbold", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","EMP_NAME","caption","Added By")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","EMP_NAME","readonly", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","EMP_NAME","allowedit", false)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","EMP_NAME","MinWidth", 100)
+
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","Log_time","headerforecolor", v.Color.PRI-GSS-00)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","Log_time","headerfontbold", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","Log_time","caption","Time Stamp")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","Log_time","readonly", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","Log_time","allowedit", false)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","Log_time","DisplayCustomDatetime", "G")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","Log_time","MinWidth", 90)
+
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","MODIFIED_BY","headerforecolor", v.Color.PRI-GSS-00)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","MODIFIED_BY","headerfontbold", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","MODIFIED_BY","caption","Modified By")
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","MODIFIED_BY","readonly", true)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","MODIFIED_BY","allowedit", false)
+gui.fAddBagDet.GsGcAddBagDet.SetColumnProperty("AddBagGrid","MODIFIED_BY","MinWidth", 100)
+
+
+'cond formatting to high light edited rows
+gui.fAddBagDet.GsGcAddBagDet.AddStyleFormatCondition("AddBagGrid","edit","ffcntag","equal","Y")
+gui.fAddBagDet.GsGcAddBagDet.SetStyleFormatConditionProperty("AddBagGrid","edit","ffcntag","backcolor","LightSteelBlue")
+gui.fAddBagDet.GsGcAddBagDet.SetStyleFormatConditionProperty("AddBagGrid","edit","ffcntag","ApplyToRow","true")
+
+
+gui.fAddBagDet.GsGcAddBagDet.SetGridviewProperty("AddBagGrid","Enableappearanceoddrow",True)
+gui.fAddBagDet.GsGcAddBagDet.SetGridviewProperty("AddBagGrid","OptionsFindAlwaysVisible",True)
+gui.fAddBagDet.GsGcAddBagDet.SetGridviewProperty("AddBagGrid","Showgrouppanel",True)
+
+gui.fAddBagDet.GsGcAddBagDet.SetGridviewProperty("AddBagGrid","OptionsViewShowAutoFilterRow",True)
+
+gui.fAddBagDet.GsGcAddBagDet.MainView("AddBagGrid")
+gui.fAddBagDet..Enabled(true)
+
+
+gui.fAddBagDet..Show
+gui.fAddBagDet..SetFocus
+f.Intrinsic.Control.catch
+f.Intrinsic.Control.CallSub(catching,"sub",v.Ambient.CurrentSubroutine,"errorno",v.Ambient.ErrorNumber,"errordesc",v.Ambient.ErrorDescription)
+f.Intrinsic.Control.EndTry
+Program.Sub.fAddlBagDet.End
+
+Program.Sub.GsGcAddBagDet_CellValueChanged.Start
+v.Local.iBagsPerCase.Declare(long)
+v.Local.fHours.Declare(float)
+v.Local.iTotBags.Declare(long)
+v.Local.iTotCase.Declare(long)
+v.Local.iNoCases.Declare(long)
+v.Local.fBagsPerHr.Declare(float)
+
+f.Intrinsic.Control.Try
+v.Local.fBagsPerHr.Set(v.DataTable.AddBagDT(v.Args.Rowhandle).BAGS_PER_HOUR!fieldval)
+v.Local.iBagsPerCase.Set(v.DataTable.AddBagDT(v.Args.Rowhandle).BAGS_PER_CASE!fieldval)
+v.Local.iTotBags.Set(v.DataTable.AddBagDT(v.Args.Rowhandle).TOTAL_BAGS!fieldval)
+v.Local.iNoCases.Set(v.DataTable.AddBagDT(v.Args.Rowhandle).NO_OF_CASES!fieldval)
+
+f.Data.DataTable.SetValue("AddBagDT",v.Args.rowhandle,"Edit","Y")
+gui.fAddBagDet.GsGcAddBagDet.SetCellValueByColumnName("AddBagGrid","edit",v.Args.rowindex,"Y")
+
+
+f.Intrinsic.Control.If(v.Args.column,=,"NO_OF_CASES")
+	f.Intrinsic.Math.Div(v.Local.iTotBags,v.Local.fBagsPerHr,v.Local.fHours)
+	
+	f.Intrinsic.Math.Mult(v.Local.iNoCases,v.Local.iBagsPerCase,v.Local.iTotBags)
+	f.Data.DataTable.SetValue("AddBagDT",v.Args.rowhandle,"TOTAL_BAGS",v.Local.iTotBags)
+	f.Intrinsic.Math.Div(v.Local.iTotBags,v.Local.fhours,v.Local.fBagsPerHr)
+	f.Data.DataTable.SetValue("AddBagDT",v.Args.rowhandle,"BAGS_PER_HOUR",v.Local.fBagsPerHr)
+
+	
+f.Intrinsic.Control.EndIf
+f.Intrinsic.Control.catch
+f.Intrinsic.Control.CallSub(catching,"sub",v.Ambient.CurrentSubroutine,"errorno",v.Ambient.ErrorNumber,"errordesc",v.Ambient.ErrorDescription)
+f.Intrinsic.Control.EndTry
+Program.Sub.GsGcAddBagDet_CellValueChanged.End
+
+Program.Sub.GsGcAddBagDet_RowCellClick.Start
+v.Local.sPart.Declare(string)
+v.Local.sJob.Declare(string)
+v.Local.sSuffix.Declare(string)
+v.Local.sSeq.Declare(string)
+v.Local.sCaptions.Declare(string)
+v.Local.sSQL.Declare(string)
+f.Intrinsic.Control.If(v.Args.column,=,"JOB","OR",v.Args.column,=,"SUFFIX",v.Args.column,=,"SEQ")
+	
+	gui.fAddBagDet.GsGcAddBagDet.GetCellValueByColumnName("AddBagGrid","job",v.Args.RowIndex,v.Local.sJob)
+	gui.fAddBagDet.GsGcAddBagDet.GetCellValueByColumnName("AddBagGrid","suffix",v.Args.RowIndex,v.Local.sSuffix)
+	gui.fAddBagDet.GsGcAddBagDet.GetCellValueByColumnName("AddBagGrid","SEQ",v.Args.RowIndex,v.Local.sSeq)
+	f.Intrinsic.String.build("Select sum(LBS_SCRAP) as TOT_LBS_SCRAP,sum(TOTAL_BAGS) as TOTAL_BAGS, SUM(NO_OF_CASES) AS TOTAL_CASE,SUM(NO_BOX_SCRAP) AS TOT_BOX_SCRAP, SUM(NO_CLIPS_SCRAP) AS TOT_CLIPS_SCRAP,AVG(BAGS_PER_HOUR) as AVG_BAG_HR FROM GCG_4732_SHPFLRDATA1 WHERE JOB = '{0}' AND SUFFIX = '{1}' AND SEQ = '{2}'",v.Local.sJob.Trim,v.Local.sSuffix.Trim,v.Local.sSeq.Trim,v.Local.sSQL)
+	f.data.DataTable.CreateFromSQL("AggDT","conx",v.Local.sSQL)
+	f.Intrinsic.Control.If(v.DataTable.AggDT.RowCount,<>,0)
+		gui.fAddBagDet.txtTotBags.Text(v.DataTable.AggDT(0).TOTAL_BAGS!fieldvalfloat)
+		gui.fAddBagDet.txtTotCases.Text(v.DataTable.AggDT(0).TOTAL_CASE!fieldvalfloat)
+		gui.fAddBagDet.txtAvgBgPerHr.Text(v.DataTable.AggDT(0).AVG_BAG_HR!fieldvalfloat)
+		gui.fAddBagDet.txtTotBoxScr.Text(v.DataTable.AggDT(0).TOT_BOX_SCRAP!fieldvalfloat)
+		gui.fAddBagDet.txtClipScr.Text(v.DataTable.AggDT(0).TOT_CLIPS_SCRAP!fieldvalfloat)
+		gui.fAddBagDet.txtTotScr.Text(v.DataTable.AggDT(0).TOT_LBS_SCRAP!fieldvalfloat)
+		f.Data.DataTable.Close("AggDT")
+	f.Intrinsic.Control.Else
+		f.Data.DataTable.Close("AggDT")
+		f.Intrinsic.Control.ExitSub
+	f.Intrinsic.Control.EndIf
+	
+	f.Intrinsic.String.Build("Aggregates for Job {0}-{1}-{2}",v.Local.sJob.Trim,v.Local.sSuffix.Trim,v.Local.sSeq.Trim,v.Local.sCaptions)
+	gui.fAddBagDet.lbljob.Caption(v.Local.sCaptions)
+	gui.fAddBagDet.lbljob.ForeColor("BLACK")
+f.Intrinsic.Control.Else
+	f.Intrinsic.Control.ExitSub
+f.Intrinsic.Control.EndIf
+
+Program.Sub.GsGcAddBagDet_RowCellClick.End
+
+Program.Sub.cmdSavChng1_Click.Start
+v.Local.icount.Declare(long)
+v.Local.sSQL.Declare(string)
+v.Local.sNoCases.Declare(string)
+v.Local.sLotNoFilm.Declare(string)
+v.Local.slbsScrap.Declare(string)
+v.Local.sScrapReason.Declare(string)
+v.Local.sRollNoFlm.Declare(string)
+v.Local.sNoOfBox.Declare(string)
+v.Local.sNoOfClip.Declare(string)
+
+v.Local.sTotBags.Declare(string)
+v.Local.sBagsPerHr.Declare(string)
+v.Local.sTotCase.Declare(string)
+v.Local.sJob.Declare(string)
+v.Local.sSeq.Declare(string)
+v.Local.sSuf.Declare(string)
+v.Local.sEntryNo.Declare(string)
+
+f.Intrinsic.Control.Try
+
+gui.fAddBagDet..Enabled(false)
+
+'create view of rows with edit flag as Y
+f.data.Dataview.Create("AddBagDT","savinvw",22,"edit = 'Y'","")
+
+f.Intrinsic.Control.if(v.DataView.AddBagDT!savinvw.RowCount,=,0)
+	Function.Intrinsic.UI.CloseWaitDialog
+	f.Intrinsic.UI.Msgbox("No changes have been made as nothing has been edited on the grid.")
+	gui.fAddBagDet..Enabled(True)
+	gui.fAddBagDet..SetFocus
+	f.Intrinsic.Control.ExitSub
+f.Intrinsic.Control.EndIf
+
+f.Intrinsic.Control.For(v.Local.icount,0,v.dataview.AddBagDT!savinvw.RowCount--,1)
+	v.Local.sNoCases.set(v.dataview.AddBagDT!savinvw(v.Local.icount).NO_OF_CASES!fieldval)
+	v.Local.sLotNoFilm.set(v.dataview.AddBagDT!savinvw(v.Local.icount).LOT_NO_FILM!fieldval)
+	v.Local.slbsScrap.set(v.dataview.AddBagDT!savinvw(v.Local.icount).LBS_SCRAP!fieldval)
+	v.Local.sScrapReason.set(v.dataview.AddBagDT!savinvw(v.Local.icount).SCRAP_REASON!fieldval)
+	v.Local.sRollNoFlm.set(v.dataview.AddBagDT!savinvw(v.Local.icount).ROLL_NO_FILM!fieldval)
+	v.Local.sNoOfBox.set(v.dataview.AddBagDT!savinvw(v.Local.icount).NO_BOX_SCRAP!fieldval)
+	v.Local.sNoOfClip.set(v.dataview.AddBagDT!savinvw(v.Local.icount).NO_CLIPS_SCRAP!fieldval)
+	v.Local.sTotBags.set(v.dataview.AddBagDT!savinvw(v.Local.icount).TOTAL_BAGS!fieldval)
+	v.Local.sBagsPerHr.set(v.dataview.AddBagDT!savinvw(v.Local.icount).BAGS_PER_HOUR!fieldval)
+	v.Local.sJob.set(v.dataview.AddBagDT!savinvw(v.Local.icount).JOB!fieldval)
+	v.Local.sSeq.set(v.dataview.AddBagDT!savinvw(v.Local.icount).SEQ!fieldval)
+	v.Local.sSuf.set(v.dataview.AddBagDT!savinvw(v.Local.icount).SUFFIX!fieldval)
+	v.Local.sEntryNo.set(v.dataview.AddBagDT!savinvw(v.Local.icount).ENTRY_NO!fieldval)
+	f.Intrinsic.string.Build("UPDATE GCG_4732_SHPFLRDATA1 SET NO_OF_CASES = '{0}',LOT_NO_FILM = '{1}',LBS_SCRAP = '{2}',SCRAP_REASON = '{3}',ROLL_NO_FILM = '{4}',NO_BOX_SCRAP = '{5}',NO_CLIPS_SCRAP = '{6}',TOTAL_BAGS = '{7}',BAGS_PER_HOUR = '{8}',MODIFIED_BY = '{9}' WHERE JOB = '{10}' and SUFFIX = '{11}' AND SEQ = '{12}' AND ENTRY_NO = '{13}'",v.Local.sNoCases,v.Local.sLotNoFilm,v.Local.slbsScrap,v.Local.sScrapReason,v.Local.sRollNoFlm,v.Local.sNoOfBox,v.Local.sNoOfClip,v.Local.sTotBags,v.Local.sBagsPerHr,V.caller.User,v.local.sJob,v.Local.sSuf,v.Local.sSeq,v.Local.sEntryNo,V.Local.sSql)
+	F.ODBC.Connection!conx.EXECUTE(V.Local.sSQL)
+	f.Data.dataview.SetValue("AddBagDT","savinvw",v.Local.icount,"MODIFIED_BY",v.Caller.User)
+F.Intrinsic.Control.Next(v.Local.icount)
+f.Data.dataview.Close("AddBagDT","savinvw")
+f.Data.DataTable.SetValue("AddBagDT",-1,"edit","N")
+f.Intrinsic.UI.Msgbox("Changes have been made.")
+gui.fAddBagDet..Enabled(true)
+gui.fAddBagDet..SetFocus
+f.Intrinsic.Control.catch
+f.Intrinsic.Control.CallSub(catching,"sub",v.Ambient.CurrentSubroutine,"errorno",v.Ambient.ErrorNumber,"errordesc",v.Ambient.ErrorDescription)
+f.Intrinsic.Control.EndTry
+Program.Sub.cmdSavChng1_Click.End
+
+Program.Sub.Unload_all.Start
+f.ODBC.Connection!conx.Close
+f.Intrinsic.Control.End
+Program.Sub.Unload_all.End
+
+Program.Sub.cmdXP2XL_Click.Start
+gui.fXlExport..Show
+Program.Sub.cmdXP2XL_Click.End
+
+Program.Sub.fXlExport_UnLoad.Start
+gui.fXlExport..Visible(false)
+gui.fXlExport..ClearScreen
+
+f.Intrinsic.Control.If(v.Caller.Switches,=,"B")
+	gui.fAddBagDet..Enabled(true)
+	gui.fAddBagDet..SetFocus
+F.Intrinsic.Control.Else
+	f.Intrinsic.Control.ExitSub
+f.Intrinsic.Control.EndIf
+
+
+Program.Sub.fXlExport_UnLoad.End
+
+Program.Sub.cmdExportAct_Click.Start
+v.Local.sOutFile.Declare(String)
+v.Local.sMsg.Declare(String)
+v.Local.bCheck.Declare(boolean)
+v.Local.sOutFile.Set(v.Screen.fXlExport!txtXPName.text)
+f.Intrinsic.Control.Try
+
+f.Intrinsic.control.if(v.Local.sOutFile.Trim,=,"")
+	f.Intrinsic.String.Build("File name field is empty. Please Enter a file name",v.Local.sOutFile,v.Local.sMsg)
+	f.Intrinsic.UI.Msgbox(v.Local.sMsg)
+	f.Intrinsic.Control.ExitSub
+f.Intrinsic.Control.EndIf
+f.intrinsic.String.Build("{0}\{1}.xlsx",v.Screen.fXlExport!txtXPFold.text,v.Screen.fXlExport!txtXPName.text,v.Local.sOutFile)
+f.Intrinsic.File.Exists(v.Local.sOutFile, v.Local.bCheck)
+f.intrinsic.Control.If(v.Local.bCheck,=,true)
+	f.Intrinsic.String.Build("The file '{0}' already exists. Please change file name or type in another file name",v.Local.sOutFile,v.Local.sMsg)
+	f.Intrinsic.UI.Msgbox(v.Local.sMsg)
+	f.Intrinsic.Control.ExitSub
+f.Intrinsic.Control.EndIf
+
+f.Intrinsic.Control.If(v.Caller.Switches,=,"B")
+	gui.fXlExport.txtXPName.Text("Addl_Bag_Details")
+	gui.fAddBagDet.GsGcAddBagDet.Export(v.Local.sOutFile,"xlsx")
+	f.Intrinsic.String.Build("The report has beeen successfully exported to file {0}",v.Local.sOutFile,v.Local.sMsg)
+	f.Intrinsic.UI.Msgbox(v.Local.sMsg)
+F.Intrinsic.Control.Else
+	f.Intrinsic.Control.ExitSub
+f.Intrinsic.Control.EndIf
+f.Intrinsic.Control.CallSub(fXlExport_UnLoad)
+f.Intrinsic.Control.catch
+f.Intrinsic.Control.CallSub(catching,"sub",v.Ambient.CurrentSubroutine,"errorno",v.Ambient.ErrorNumber,"errordesc",v.Ambient.ErrorDescription)
+f.Intrinsic.Control.EndTry
+Program.Sub.cmdExportAct_Click.End
+
+Program.Sub.cmdSelectFold_Click.Start
+v.local.sFolder.Declare(string)
+f.Intrinsic.Control.Try
+'if no folder is selected the path will default to global directory
+f.Intrinsic.UI.FolderBrowser("Select a Destination Folder",v.Local.sFolder)
+f.Intrinsic.Control.If(v.Local.sFolder,<>,"***CANCEL***")
+	gui.fXlExport.txtXPFold.text(v.Local.sFolder)	
+f.Intrinsic.control.Else
+	gui.fXlExport.txtXPFold.text(v.Caller.GlobalDir)
+f.Intrinsic.Control.EndIf
+Program.Sub.cmdSelectFold_Click.End
+
+Program.Sub.catching.Start
+v.Local.sError.declare(string)
+Function.Intrinsic.String.Concat(v.Ambient.Now,": Project: GCG_4732_DataLogDash.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",v.Args.sub,V.Ambient.NewLine,"Error Occurred ",V.Args.errorno," with description ",V.args.errordesc,V.Local.sError)
+f.Intrinsic.UI.Msgbox(v.Local.sError)
+f.Intrinsic.Control.CallSub(Unload_all)
+Program.Sub.catching.End
