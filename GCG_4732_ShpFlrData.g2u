@@ -1,0 +1,415 @@
+Program.Sub.ScreenSU.Start
+Gui.fAddBagsDet..Create
+Gui.fAddBagsDet..Caption("Job Process Details")
+Gui.fAddBagsDet..Size(12375,2895)
+Gui.fAddBagsDet..MinX(0)
+Gui.fAddBagsDet..MinY(0)
+Gui.fAddBagsDet..Position(0,0)
+Gui.fAddBagsDet..BackColor(-2147483633)
+Gui.fAddBagsDet..MousePointer(0)
+Gui.fAddBagsDet..Sizeable(False)
+Gui.fAddBagsDet..Event(UnLoad,fAddBagsDet_UnLoad)
+Gui.fAddBagsDet.cmdSaveBagDet.Create(Button)
+Gui.fAddBagsDet.cmdSaveBagDet.Size(3630,495)
+Gui.fAddBagsDet.cmdSaveBagDet.Position(225,1740)
+Gui.fAddBagsDet.cmdSaveBagDet.Caption("Save Details")
+Gui.fAddBagsDet.cmdSaveBagDet.Event(Click,cmdSaveBagDet_Click)
+Gui.fAddBagsDet.cmdSaveBagDet.TabStop(True)
+Gui.fAddBagsDet.cmdSaveBagDet.TabIndex(10)
+Gui.fAddBagsDet.txtNoCases.Create(TextBox,"",True,1455,300,0,2385,180,True,0,"Arial",8,-2147483643,1)
+Gui.fAddBagsDet.txtNoCases.NumericOnly(2)
+Gui.fAddBagsDet.txtNoCases.TabStop(True)
+Gui.fAddBagsDet.txtNoCases.TabIndex(1)
+Gui.fAddBagsDet.txtNoCases.Event(LostFocus,LostFocus2)
+Gui.fAddBagsDet.txtNoCases.Event(Change,Txt_change_1)
+Gui.fAddBagsDet.lbl.Create(Label,"No. of Cases",True,2100,255,0,195,270,True,0,"Arial",8,-2147483633,0)
+Gui.fAddBagsDet.lbl2.Create(Label,"Lot No. of Film used",True,2130,255,0,195,660,True,0,"Arial",8,-2147483633,0)
+Gui.fAddBagsDet.txtLotNoFilm.Create(TextBox,"",True,1455,300,0,2385,570,True,0,"Arial",8,-2147483643,1)
+Gui.fAddBagsDet.txtLotNoFilm.NumericOnly(2)
+Gui.fAddBagsDet.txtLotNoFilm.TabStop(True)
+Gui.fAddBagsDet.txtLotNoFilm.TabIndex(2)
+Gui.fAddBagsDet.txtLotNoFilm.Event(LostFocus,LostFocus2)
+Gui.fAddBagsDet.lbl4.Create(Label,"Amount of Scrap (Lbs)",True,2265,255,0,4290,270,True,0,"Arial",8,-2147483633,0)
+Gui.fAddBagsDet.txtLbsScrap.Create(TextBox,"",True,1560,300,0,6630,180,True,0,"Arial",8,-2147483643,1)
+Gui.fAddBagsDet.txtLbsScrap.TabStop(True)
+Gui.fAddBagsDet.txtLbsScrap.TabIndex(4)
+Gui.fAddBagsDet.txtLbsScrap.Event(LostFocus,LostFocus2)
+Gui.fAddBagsDet.lbl5.Create(Label,"Total Bags",True,2160,255,0,8505,660,True,0,"Arial",8,-2147483633,0)
+Gui.fAddBagsDet.txtTotBags.Create(TextBox,"",True,1455,300,0,10695,570,True,0,"Arial",8,-2147483643,1)
+Gui.fAddBagsDet.txtTotBags.Locked(True)
+Gui.fAddBagsDet.txtTotBags.TabStop(True)
+Gui.fAddBagsDet.txtTotBags.TabIndex(8)
+Gui.fAddBagsDet.lbl6.Create(Label,"Bags per hour",True,2160,255,0,8505,1050,True,0,"Arial",8,-2147483633,0)
+Gui.fAddBagsDet.txtBagsPerHr.Create(TextBox,"",True,1455,300,0,10695,960,True,0,"Arial",8,-2147483643,1)
+Gui.fAddBagsDet.txtBagsPerHr.Locked(True)
+Gui.fAddBagsDet.txtBagsPerHr.TabStop(True)
+Gui.fAddBagsDet.txtBagsPerHr.TabIndex(9)
+Gui.fAddBagsDet.lbl7.Create(Label,"Total Cases Overall",True,2085,255,0,225,1455,True,0,"Arial",8,-2147483633,0)
+Gui.fAddBagsDet.lbl7.FontStyle(True,False,False,False,False)
+Gui.fAddBagsDet.txtTotCases.Create(TextBox,"",True,1455,300,0,2385,1365,True,0,"Arial",8,-2147483626,1)
+Gui.fAddBagsDet.txtTotCases.Locked(True)
+Gui.fAddBagsDet.txtTotCases.TabStop(True)
+Gui.fAddBagsDet.txtTotCases.TabIndex(12)
+Gui.fAddBagsDet.lbl9.Create(Label,"Reason for Scrap",True,2295,255,0,4290,660,True,0,"Arial",8,-2147483633,0)
+Gui.fAddBagsDet.lbl10.Create(Label,"Roll No. of Film Used",True,2145,255,0,195,1050,True,0,"Arial",8,-2147483633,0)
+Gui.fAddBagsDet.txtRollNoFlm.Create(TextBox,"",True,1455,300,0,2385,960,True,0,"Arial",8,-2147483643,1)
+Gui.fAddBagsDet.txtRollNoFlm.TabStop(True)
+Gui.fAddBagsDet.txtRollNoFlm.TabIndex(3)
+Gui.fAddBagsDet.txtRollNoFlm.Event(KeyPressEnter,LostFocus2)
+Gui.fAddBagsDet.lbl11.Create(Label,"No. of Boxes Scrapped",True,2295,255,0,4290,1050,True,0,"Arial",8,-2147483633,0)
+Gui.fAddBagsDet.txtNoBoxScr.Create(TextBox,"",True,1545,300,0,6630,960,True,0,"Arial",8,-2147483643,1)
+Gui.fAddBagsDet.txtNoBoxScr.TabStop(True)
+Gui.fAddBagsDet.txtNoBoxScr.TabIndex(6)
+Gui.fAddBagsDet.txtNoBoxScr.Event(LostFocus,LostFocus2)
+Gui.fAddBagsDet.lbl12.Create(Label,"Total Scrap overall  ",True,2235,255,0,8460,1920,True,0,"Arial",8,-2147483633,0)
+Gui.fAddBagsDet.lbl12.FontStyle(True,False,False,False,False)
+Gui.fAddBagsDet.txtTotScrap.Create(TextBox,"",True,1455,300,0,10695,1830,True,0,"Arial",8,-2147483626,1)
+Gui.fAddBagsDet.txtTotScrap.FontStyle(True,False,False,False,False)
+Gui.fAddBagsDet.txtTotScrap.Locked(True)
+Gui.fAddBagsDet.txtTotScrap.TabStop(True)
+Gui.fAddBagsDet.txtTotScrap.TabIndex(15)
+Gui.fAddBagsDet.cmdClrFlds1.Create(Button)
+Gui.fAddBagsDet.cmdClrFlds1.Size(3780,495)
+Gui.fAddBagsDet.cmdClrFlds1.Position(4290,1740)
+Gui.fAddBagsDet.cmdClrFlds1.Caption("Clear Fields")
+Gui.fAddBagsDet.cmdClrFlds1.DefaultValue("")
+Gui.fAddBagsDet.cmdClrFlds1.Event(Click,cmdClrFlds1_Click)
+Gui.fAddBagsDet.cmdClrFlds1.TabStop(True)
+Gui.fAddBagsDet.cmdClrFlds1.TabIndex(11)
+Gui.fAddBagsDet.lbl13.Create(Label,"No. of Clips Scrapped",True,2160,255,0,8505,270,True,0,"Arial",8,-2147483633,0)
+Gui.fAddBagsDet.txtNoClipScr.Create(TextBox,"",True,1455,300,0,10695,210,True,0,"Arial",8,-2147483643,1)
+Gui.fAddBagsDet.txtNoClipScr.TabStop(True)
+Gui.fAddBagsDet.txtNoClipScr.TabIndex(7)
+Gui.fAddBagsDet.lbl8.Create(Label,"Total Bags Overall",True,2235,255,0,4290,1440,True,0,"Arial",8,-2147483633,0)
+Gui.fAddBagsDet.lbl8.FontStyle(True,False,False,False,False)
+Gui.fAddBagsDet.txtTotBagsOA.Create(TextBox,"",True,1545,300,0,6615,1365,True,0,"Arial",8,-2147483626,1)
+Gui.fAddBagsDet.txtTotBagsOA.TabStop(True)
+Gui.fAddBagsDet.txtTotBagsOA.TabIndex(13)
+Gui.fAddBagsDet.txtTotBagsOA.Locked(True)
+Gui.fAddBagsDet.lbl14.Create(Label,"Avg. Bags Per Hour",True,2235,255,0,8460,1440,True,0,"Arial",8,-2147483633,0)
+Gui.fAddBagsDet.lbl14.FontStyle(True,False,False,False,False)
+Gui.fAddBagsDet.txtAvgBagPerHr.Create(TextBox,"",True,1455,300,0,10695,1365,True,0,"Arial",8,-2147483626,1)
+Gui.fAddBagsDet.txtAvgBagPerHr.TabStop(True)
+Gui.fAddBagsDet.txtAvgBagPerHr.TabIndex(14)
+Gui.fAddBagsDet.txtAvgBagPerHr.Locked(True)
+Gui.fAddBagsDet.ddlScrapNote.Create(DropDownList)
+Gui.fAddBagsDet.ddlScrapNote.Size(1545,330)
+Gui.fAddBagsDet.ddlScrapNote.Position(6630,555)
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+'v.Global.sRout.Declare(String)
+v.Global.bUpdate.Declare(boolean,false)
+v.Global.iRow.Declare(long,-1)
+v.Global.dTime.Declare(Date)
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+v.Local.sSQL.Declare(String)
+v.Local.sPLCheck.Declare(String)
+f.Intrinsic.Control.Try
+F.ODBC.connection!conx.openConnection(v.Ambient.PDSN,v.Ambient.PUser,v.Ambient.PPass)
+f.Intrinsic.string.Build("SELECT RTRIM(PRODUCT_LINE) as PRODUCT_LINE FROM V_JOB_HEADER WHERE JOB = '{0}' and SUFFIX = '{1}'",v.Passed.009990,v.Passed.009991,v.Local.sSQL)
+f.odbc.Connection!conx.executeandreturn(v.local.sSql,v.Local.sPLCheck)
+'hook check
+f.Intrinsic.Control.if(v.Caller.Hook,=,15880,"AND",v.Local.sPLCheck.Trim,=,"PB")
+	f.Intrinsic.Control.If(v.Local.sPLCheck.Trim,=,"PB","OR",v.Local.sPLCheck.Trim,=,"7B",v.Local.sPLCheck.Trim,=,"KT",v.Local.sPLCheck.Trim,=,"TL")
+		F.Intrinsic.Control.CallSub(AddBagDet)
+	f.Intrinsic.Control.Else
+		f.Intrinsic.control.callsub(Unload_All)
+	f.Intrinsic.Control.EndIf
+f.Intrinsic.Control.Else
+	f.Intrinsic.control.callsub(Unload_All)
+f.Intrinsic.Control.EndIf
+f.Intrinsic.Control.catch
+f.Intrinsic.Control.CallSub(catching,"sub",v.Ambient.CurrentSubroutine,"errorno",v.Ambient.ErrorNumber,"errordesc",v.Ambient.ErrorDescription)
+f.Intrinsic.Control.EndTry
+Program.Sub.Main.End
+
+Program.Sub.Unload_All.Start
+f.odbc.Connection!conx.Close
+f.Intrinsic.Control.End
+Program.Sub.Unload_All.End
+
+Program.Sub.AddBagDet.Start
+v.Local.sSQL.Declare(String)
+v.Local.sFrmCaption.Declare(String)
+v.Local.sTemp.Declare(String)
+v.Local.sPLCheck.Declare(String)
+v.Local.iYesNo.Declare(long)
+v.Local.iCheck.Declare(long)
+v.Local.fTotScrLbs.declare(float)
+v.Local.iRollNo.Declare(long)
+v.Local.fTotLbs.declare(float)
+v.Local.fTotFoot.declare(float)
+v.Local.fTotScrap.declare(float)
+
+f.Intrinsic.Control.Try
+f.Intrinsic.string.Build("SELECT RTRIM(PRODUCT_LINE) as PRODUCT_LINE FROM V_JOB_HEADER WHERE JOB = '{0}' and SUFFIX = '{1}'",v.Passed.009990,v.Passed.009991,v.Local.sSQL)
+f.odbc.Connection!conx.executeandreturn(v.local.sSql,v.Local.sPLCheck)
+gui.fAddBagsDet.ddlScrapNote.ClearItems
+gui.fAddBagsDet.ddlScrapNote.AddItem("NA")
+gui.fAddBagsDet.ddlScrapNote.additem("Blocking")
+gui.fAddBagsDet.ddlScrapNote.additem("Carbons/Unmelts")
+gui.fAddBagsDet.ddlScrapNote.additem("Crushed Core")
+gui.fAddBagsDet.ddlScrapNote.additem("Die Lines")
+gui.fAddBagsDet.ddlScrapNote.additem("Film Wander")
+gui.fAddBagsDet.ddlScrapNote.additem("Gauge Band")
+gui.fAddBagsDet.ddlScrapNote.additem("Gauge Fluctuation")
+gui.fAddBagsDet.ddlScrapNote.additem("Gusset Out")
+gui.fAddBagsDet.ddlScrapNote.additem("Jamming")
+gui.fAddBagsDet.ddlScrapNote.additem("Lay Flat Issue")
+gui.fAddBagsDet.ddlScrapNote.additem("Mechanical Adjustment")
+gui.fAddBagsDet.ddlScrapNote.additem("Mechanical Malfunction")
+gui.fAddBagsDet.ddlScrapNote.additem("Print Issue")
+gui.fAddBagsDet.ddlScrapNote.additem("Roll Change")
+gui.fAddBagsDet.ddlScrapNote.additem("Roll Damage")
+gui.fAddBagsDet.ddlScrapNote.additem("Splice")
+gui.fAddBagsDet.ddlScrapNote.additem("Telescoping")
+gui.fAddBagsDet.ddlScrapNote.additem("Tension Issue")
+gui.fAddBagsDet.ddlScrapNote.additem("Wrinkles")
+
+
+'f.Intrinsic.Control.ElseIf(v.Local.sPLCheck.Trim,=,"PB")
+f.Intrinsic.Control.If(v.Local.sPLCheck.Trim,=,"PB","OR",v.Local.sPLCheck.Trim,=,"7B",v.Local.sPLCheck.Trim,=,"KT",v.Local.sPLCheck.Trim,=,"TL")
+	f.Intrinsic.Control.If(v.Passed.000008,=,"N","AND",v.Passed.000003,=,"N")
+		f.Intrinsic.Control.CallSub(Unload_all)
+	f.Intrinsic.Control.EndIf
+	f.Intrinsic.Control.If(v.Passed.000003,=,"Y")
+		Function.Intrinsic.UI.MsgBox("Do you have to save any job related data before closing the Job?", "Bag Data Check", 4, v.Local.iYesNo)
+		f.Intrinsic.Control.If(v.Local.iYesNo,=,7)
+			f.Intrinsic.Control.CallSub(Unload_all)
+		f.Intrinsic.Control.EndIf		
+	f.Intrinsic.Control.EndIf
+	f.Intrinsic.string.Build("select BAGS_PER_CASE FROM GCG_4732_ADDLRTRINFO WHERE ROUTER = (SELECT ROUTER FROM V_JOB_HEADER WHERE JOB = '{0}' and SUFFIX = '{1}')",v.Passed.009990,v.Passed.009991,v.Local.sSQL)
+	f.Data.DataTable.CreateFromSQL("CalcHold","conx",v.Local.sSQL)
+	f.Intrinsic.Control.If(v.DataTable.CalcHold.RowCount,=,0)
+		f.intrinsic.UI.Msgbox("Router associated with the job does not have the required additional details saved in the database. Contact supervisor to get those details added in before processing the Job.")
+		f.Intrinsic.Control.CallSub(fAddBagsDet_UnLoad)
+	f.Intrinsic.Control.EndIf
+	F.DATA.DataTable.Close("CalcHold")
+	f.Intrinsic.string.Build("Add Roll Details for JOB {0}-{1} SEQ {2}",v.Passed.009990,v.Passed.009991,v.Passed.009992,v.Local.sFrmCaption)
+	gui.fAddBagsDet..Caption(v.Local.sFrmCaption)
+	f.Intrinsic.string.Build("select Sum(LBS_SCRAP) as TOT_LBS_SCRAP,sum(TOTAL_BAGS) as TOTAL_BAGS, SUM(NO_OF_CASES) AS TOTAL_CASE, AVG(BAGS_PER_HOUR) as AVG_BAG_HR FROM GCG_4732_SHPFLRDATA1 WHERE JOB = '{0}' and SUFFIX = '{1}' and SEQ = '{2}'",v.Passed.009990,v.Passed.009991,v.Passed.009992,v.Local.sSQL)
+'	f.odbc.Connection!conx.ExecuteAndReturn(v.Local.sSQL,v.Local.fTotScrLbs)
+
+	f.data.DataTable.CreateFromSQL("AggDT","conx",v.Local.sSQL)
+	f.Intrinsic.Control.If(v.DataTable.AggDT.RowCount,<>,0)
+		gui.fAddBagsDet.txtTotScrap.Text(v.DataTable.AggDT(0).TOT_LBS_SCRAP!fieldvalfloat)
+		gui.fAddBagsDet.txtTotBagsOA.Text(v.DataTable.AggDT(0).TOTAL_BAGS!fieldvalfloat)
+		gui.fAddBagsDet.txtTotCases.Text(v.DataTable.AggDT(0).TOTAL_CASE!fieldvalfloat)
+		gui.fAddBagsDet.txtAvgBagPerHr.Text(v.DataTable.AggDT(0).AVG_BAG_HR!fieldvalfloat)
+'		gui.fAddBagDet.txtTotBoxScr.Text(v.DataTable.AggDT(0).TOT_BOX_SCRAP!fieldvalfloat)
+'		gui.fAddBagDet.txtClipScr.Text(v.DataTable.AggDT(0).TOT_CLIPS_SCRAP!fieldvalfloat)
+		
+		f.Data.DataTable.Close("AggDT")
+	f.Intrinsic.Control.Else
+		f.Data.DataTable.Close("AggDT")
+	f.Intrinsic.Control.EndIf
+	
+'	v.Local.sTemp.Set(v.Local.fTotScrLbs)
+'	F.Intrinsic.String.Format(v.Local.sTemp, "#########0.00", v.Local.sTemp)
+'	gui.fAddBagsDet.txtTotScrap.Text(v.Local.sTemp)
+	
+	v.Global.dTime.Set(v.Ambient.Now)
+	gui.fAddBagsDet..Show
+	gui.fAddBagsDet..SetFocus	
+
+
+f.Intrinsic.Control.Else
+	f.Intrinsic.Control.CallSub(Unload_all)
+f.Intrinsic.Control.EndIf
+
+f.Intrinsic.Control.catch
+v.Passed.777777.Set(1)
+f.Intrinsic.Control.CallSub(catching,"sub",v.Ambient.CurrentSubroutine,"errorno",v.Ambient.ErrorNumber,"errordesc",v.Ambient.ErrorDescription)
+f.Intrinsic.Control.EndTry
+Program.Sub.AddBagDet.End
+
+Program.Sub.cmdClrFlds1_Click.Start
+gui.fAddBagsDet.txtNoCases.Text("")
+gui.fAddBagsDet.txtLotNoFilm.Text("")
+gui.fAddBagsDet.txtLbsScrap.Text("")
+gui.fAddBagsDet.ddlScrapNote.Text("NA")
+gui.fAddBagsDet.txtNoBoxScr.Text("")
+gui.fAddBagsDet.txtNoClipScr.Text("")
+gui.fAddBagsDet.txtRollNoFlm.Text("")
+gui.fAddBagsDet.txtTotBags.Text("")
+gui.fAddBagsDet.txtBagsPerHr.Text("")
+gui.fAddBagsDet.txtTotCases.Text("")
+Program.Sub.cmdClrFlds1_Click.End
+
+Program.Sub.cmdSaveBagDet_Click.Start
+v.Local.sSql.Declare(String)
+V.Local.icheck.Declare(long)
+V.Local.iRollNo.Declare(long)
+f.intrinsic.Control.Try
+gui.fAddBagsDet..Enabled(false)
+f.Intrinsic.Control.If(v.Screen.fAddBagsDet!txtNoCases.text.trim,=,"")
+	f.intrinsic.UI.Msgbox("No. of Cases field is empty. Ensure that the field isn't empty before saving the  Bag output Details.")
+	gui.fAddBagsDet..Enabled(true)
+	f.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.EndIf
+f.Intrinsic.Control.If(v.Screen.fAddBagsDet!txtLotNoFilm.text.trim,=,"")
+	f.intrinsic.UI.Msgbox("Lot No. of Film is empty. Ensure that the field isn't empty before saving the Bag output Details.")
+	gui.fAddBagsDet..Enabled(true)
+	f.Intrinsic.Control.ExitSub
+	
+F.Intrinsic.Control.EndIf
+f.Intrinsic.Control.If(v.Screen.fAddBagsDet!txtNoClipScr.text.trim,=,"")
+	f.intrinsic.UI.Msgbox("No. of Clips Scrapped field is empty. Ensure that the field isn't empty before saving the Bag output Details.")
+	gui.fAddBagsDet..Enabled(true)
+	f.Intrinsic.Control.ExitSub
+	
+F.Intrinsic.Control.EndIf
+f.Intrinsic.Control.If(v.Screen.fAddBagsDet!txtLbsScrap.text.trim,=,"")
+	f.intrinsic.UI.Msgbox("Scrap field is empty. Ensure that the field isn't empty before saving the Bag output Details.")
+	gui.fAddBagsDet..Enabled(true)
+	f.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.EndIf
+
+f.Intrinsic.Control.If(v.Screen.fAddBagsDet!txtNoBoxScr.text.trim,=,"")
+	f.intrinsic.UI.Msgbox("Lbs Additive field is empty. Ensure that the field isn't empty before saving the Bag output Details.")
+	gui.fAddBagsDet..Enabled(true)
+	f.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.EndIf
+f.Intrinsic.Control.If(v.Screen.fAddBagsDet!txtRollNoFlm.text.trim,=,"")
+	f.intrinsic.UI.Msgbox("Additive type field is empty. Ensure that the field isn't empty before saving the Bag output Details.")
+	gui.fAddBagsDet..Enabled(true)
+	f.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.EndIf
+f.Intrinsic.control.CallSub(Txt_change_1)
+f.Intrinsic.control.CallSub(LostFocus2)
+f.Intrinsic.string.Build("SELECT COUNT(JOB) FROM GCG_4732_SHPFLRDATA1 WHERE JOB = '{0}' and SUFFIX = '{1}' and SEQ = '{2}'",v.Passed.009990,v.Passed.009991,v.Passed.009992,v.Local.sSQL)
+f.odbc.Connection!conx.executeandreturn(v.local.sSql,v.Local.iCheck)
+F.Intrinsic.control.If(v.Local.iCheck,=,0)
+	v.Local.iRollNo.Set(1)
+f.Intrinsic.Control.Else
+	f.Intrinsic.Math.Add(v.Local.iCheck,1,v.Local.iRollNo)	
+f.Intrinsic.Control.EndIf
+
+
+f.Intrinsic.String.build("INSERT INTO GCG_4732_SHPFLRDATA1  (JOB,SUFFIX,SEQ,NO_OF_CASES,LOT_NO_FILM,LBS_SCRAP,SCRAP_REASON,ROLL_NO_FILM,NO_BOX_SCRAP,NO_CLIPS_SCRAP,TOTAL_BAGS,BAGS_PER_HOUR,EMPLOYEE,EMP_NAME,ENTRY_NO) VALUES  ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}')",v.Passed.009990,v.Passed.009991,v.Passed.009992,v.Screen.fAddBagsDet!txtNoCases.text,v.Screen.fAddBagsDet!txtLotNoFilm.text,v.Screen.fAddBagsDet!txtLbsScrap.text,v.Screen.fAddBagsDet!ddlScrapNote.text,v.Screen.fAddBagsDet!txtRollNoFlm.text,v.Screen.fAddBagsDet!txtNoBoxScr.text,v.Screen.fAddBagsDet!txtNoClipScr.text,v.Screen.fAddBagsDet!txtTotBags.text,v.Screen.fAddBagsDet!txtBagsPerHr.text,v.Passed.009993,v.Passed.009994,v.Local.iRollNo,V.Local.sSql)
+F.ODBC.Connection!conx.EXECUTE(V.Local.sSql)
+gui.fAddBagsDet..Enabled(true)
+f.Intrinsic.Control.CallSub(Unload_all)
+f.Intrinsic.Control.catch
+v.Passed.777777.Set(1)
+f.Intrinsic.Control.CallSub(catching,"sub",v.Ambient.CurrentSubroutine,"errorno",v.Ambient.ErrorNumber,"errordesc",v.Ambient.ErrorDescription)
+f.Intrinsic.Control.EndTry
+
+Program.Sub.cmdSaveBagDet_Click.End
+
+Program.Sub.fAddBagsDet_UnLoad.Start
+v.Passed.777777.Set(1)
+f.Intrinsic.Control.CallSub(Unload_all)
+Program.Sub.fAddBagsDet_UnLoad.End
+
+Program.Sub.LostFocus2.Start
+v.Local.sTemp.Declare(String)
+f.Intrinsic.Control.Try
+f.Intrinsic.Control.BlockEvents
+v.Local.sTemp.Set(v.Screen.fAddBagsDet!txtNoCases.text)
+F.Intrinsic.String.Format(v.Local.sTemp, "#########0", v.Local.sTemp)
+gui.fAddBagsDet.txtNoCases.Text(v.Local.sTemp)
+
+v.Local.sTemp.Set(v.Screen.fAddBagsDet!txtLotNoFilm.text)
+F.Intrinsic.String.Format(v.Local.sTemp, "#########0", v.Local.sTemp)
+gui.fAddBagsDet.txtLotNoFilm.Text(v.Local.sTemp)
+
+v.Local.sTemp.Set(v.Screen.fAddBagsDet!txtNoClipScr.text)
+F.Intrinsic.String.Format(v.Local.sTemp, "#########0", v.Local.sTemp)
+gui.fAddBagsDet.txtNoTubeScr.Text(v.Local.sTemp)
+
+v.Local.sTemp.Set(v.Screen.fAddBagsDet!txtLbsScrap.text)
+F.Intrinsic.String.Format(v.Local.sTemp, "#########0.00", v.Local.sTemp)
+gui.fAddBagsDet.txtLbsScrap.Text(v.Local.sTemp)
+
+
+v.Local.sTemp.Set(v.Screen.fAddBagsDet!txtNoBoxScr.text)
+F.Intrinsic.String.Format(v.Local.sTemp, "#########0", v.Local.sTemp)
+gui.fAddBagsDet.txtNoBoxScr.Text(v.Local.sTemp)
+
+v.Local.sTemp.Set(v.Screen.fAddBagsDet!txtRollNoFlm.text)
+F.Intrinsic.String.Format(v.Local.sTemp, "#########0", v.Local.sTemp)
+gui.fAddBagsDet.txtRollNoFlm.Text(v.Local.sTemp)
+f.Intrinsic.Control.UnBlockEvents
+
+
+f.Intrinsic.Control.catch
+f.Intrinsic.Control.CallSub(catching,"sub",v.Ambient.CurrentSubroutine,"errorno",v.Ambient.ErrorNumber,"errordesc",v.Ambient.ErrorDescription)
+f.Intrinsic.Control.EndTry
+
+Program.Sub.LostFocus2.End
+
+Program.Sub.Txt_change_1.Start
+v.Local.sSql.Declare(String)
+v.Local.sTemp.Declare(String)
+v.Local.dDate.Declare(date)
+v.Local.dTime.Declare(date)
+v.Local.dStDateTime.Declare(Date)
+v.Local.iInterval.Declare(long)
+v.Local.fHours.Declare(float)
+v.Local.sNoCases.Declare(Long)
+v.Local.iTotBags.Declare(long)
+v.Local.iBagsPerSet.Declare(long)
+v.Local.fBagsPerHour.Declare(float)
+v.Local.iTotCase.Declare(long)
+f.intrinsic.Control.Try
+f.Intrinsic.Control.BlockEvents
+v.Local.sNoCases.set(v.Screen.fAddBagsDet!txtNoCases.text)
+f.Intrinsic.Control.If(v.Local.sNoCases,=,"")
+	f.Intrinsic.Control.UnBlockEvents
+	f.Intrinsic.Control.ExitSub
+f.Intrinsic.Control.EndIf
+
+
+
+f.Intrinsic.string.Build("select BAGS_PER_CASE FROM GCG_4732_ADDLRTRINFO WHERE ROUTER = (SELECT ROUTER FROM V_JOB_HEADER WHERE JOB = '{0}' and SUFFIX = '{1}')",v.Passed.009990,v.Passed.009991,v.Local.sSQL)
+f.ODBC.Connection!conx.ExecuteAndReturn(v.Local.sSQL,v.Local.iBagsPerSet)
+
+f.intrinsic.Math.Mult(v.Local.sNoCases.float,v.Local.iBagsPerSet,v.Local.iTotBags)
+gui.fAddBagsDet.txtTotBags.Text(v.Local.iTotBags)
+
+f.Intrinsic.string.Build("select START_DATE,START_TIME FROM V_JOBS_IN_PROCESS_G  WHERE JOB = '{0}' and SUFFIX = '{1}' and SEQ = '{2}' and EMPLOYEE = '{3}'",v.Passed.009990,v.Passed.009991,v.Passed.009992,v.Passed.009993,v.Local.sSQL)
+f.ODBC.Connection!conx.OpenRecordsetRO("rst",v.Local.sSQL)
+
+Function.Intrinsic.Date.TimeComp(v.ODBC.conx!rst.FieldVal!START_TIME,v.local.dTime)
+Function.Intrinsic.Date.DateComp(v.ODBC.conx!rst.FieldVal!START_DATE,v.Local.dDate)
+
+f.Intrinsic.date.CombineDateTime(v.Local.dDate,v.local.dTime,v.Local.dStDateTime)
+f.Intrinsic.Date.DateDiff("n",v.Local.dStDateTime,v.Ambient.Now,v.Local.iInterval)
+F.ODBC.Connection!conx.CloseRecordsets
+f.Intrinsic.Math.Div(v.Local.iInterval,60,v.Local.fHours)
+f.Intrinsic.Control.If(v.Local.fHours,=,0)
+	f.Intrinsic.UI.Msgbox("The job cannot be processed as it has 0 Hours logged against it.")
+	f.Intrinsic.Control.CallSub(fAddBagsDet_UnLoad)
+f.Intrinsic.Control.EndIf
+f.Intrinsic.Math.div(v.Local.iTotBags,v.Local.fHours,v.Local.fBagsPerHour)
+gui.fAddBagsDet.txtBagsPerHr.Text(v.Local.fBagsPerHour)
+
+
+v.Local.sTemp.Set(v.Screen.fAddBagsDet!txtTotBags.text)
+F.Intrinsic.String.Format(v.Local.sTemp, "#########0", v.Local.sTemp)
+gui.fAddBagsDet.txtTotBags.Text(v.Local.sTemp)
+
+
+
+v.Local.sTemp.Set(v.Screen.fAddBagsDet!txtBagsPerHr.text)
+F.Intrinsic.String.Format(v.Local.sTemp, "#########0.0", v.Local.sTemp)
+gui.fAddBagsDet.txtBagsPerHr.Text(v.Local.sTemp)
+
+
+f.Intrinsic.Control.UnBlockEvents
+f.Intrinsic.Control.catch
+f.Intrinsic.Control.CallSub(catching,"sub",v.Ambient.CurrentSubroutine,"errorno",v.Ambient.ErrorNumber,"errordesc",v.Ambient.ErrorDescription)
+f.Intrinsic.Control.EndTry
+
+Program.Sub.Txt_change_1.End
+
+Program.Sub.catching.Start
+v.Local.sError.declare(string)
+Function.Intrinsic.String.Concat(v.Ambient.Now,": Project: GCG_4732_ShpFlrData.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",v.Args.sub,V.Ambient.NewLine,"Error Occurred ",V.Args.errorno," with description ",V.args.errordesc,V.Local.sError)
+f.Intrinsic.UI.Msgbox(v.Local.sError)
+f.Intrinsic.Control.CallSub(Unload_all)
+Program.Sub.catching.End
